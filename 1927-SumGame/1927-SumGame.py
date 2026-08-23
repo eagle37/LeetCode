@@ -1,4 +1,4 @@
-# Last updated: 8/23/2026, 5:19:56 PM
+# Last updated: 8/23/2026, 5:22:46 PM
 1class Solution:
 2    def sumGame(self, num: str) -> bool:
 3        ql, qr, diff = 0, 0, 0
