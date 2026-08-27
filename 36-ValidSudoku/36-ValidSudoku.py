@@ -1,27 +1,28 @@
-# Last updated: 8/27/2026, 3:15:48 PM
-1class Solution:
-2    def isValidSudoku(self, board: List[List[str]]) -> bool:
-3        row = [set() for _ in range(9)]
-4        col = [set() for _ in range(9)]
-5        boxes  = [set() for _ in range(9)]
-6
-7        for r in range(9):
-8            for c in range(9):
-9
-10                num = board[r][c]
-11                if num == '.':
-12                    continue
-13                box = (r//3)*3 + (c//3)
-14
-15                if num in row[r]:
-16                    return False
-17                if num in col[c]:
-18                    return False
-19                if num in boxes[box]:
-20                    return False
-21                
-22                row[r].add(num)
-23                col[c].add(num)
-24                boxes[box].add(num)
-25
-26        return True
+# Last updated: 8/27/2026, 3:16:13 PM
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        #rows = [[] for _ in range(9)]
+        # cols = [[] for _ in range(9)]
+        # box = [[] for _ in range(9)]
+        # go through each cell in board, add the num to each the row, col, box it is in, if same num appear in the these, return Flase
+        
+        rows = [[] for _ in range(len(board))]
+        cols = [[] for _ in range(len(board[0]))]
+        boxes = [[] for _ in range(9)]
+
+        for r in range(9):
+            for c in range(9):
+                num = board[r][c]
+                box = (r // 3) * 3 + c // 3
+                
+                if num == ".":
+                    continue
+                elif num in rows[r] or num in cols[c] or num in boxes[box]:
+                    return False
+                
+                else:
+                    rows[r].append(num)
+                    cols[c].append(num)
+                    boxes[box].append(num)
+        
+        return True
