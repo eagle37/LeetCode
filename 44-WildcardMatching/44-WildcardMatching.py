@@ -1,21 +1,36 @@
-# Last updated: 8/28/2026, 9:58:19 PM
-1class Solution:
-2    def isMatch(self, s: str, p: str) -> bool:
-3        m, n = len(s), len(p)
-4
-5        dp = [[False] * (n + 1) for _ in range(m + 1)]
-6        dp[m][n] = True
-7
-8        for i in range(m, -1, -1):
-9            for j in range(n - 1, -1, -1):
-10
-11                if p[j] == '*':
-12                    dp[i][j] = dp[i][j + 1]
-13
-14                    if i < m:
-15                        dp[i][j] |= dp[i + 1][j]
-16
-17                elif i < m and (p[j] == s[i] or p[j] == '?'):
-18                    dp[i][j] = dp[i + 1][j + 1]
-19
-20        return dp[0][0]
+# Last updated: 8/28/2026, 10:00:08 PM
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        s_ptr = 0
+        p_ptr = 0
+        star_idx = -1
+        match_idx = 0
+
+        while s_ptr < len(s):
+            # 1. Direct character match or single character wildcard '?'
+            if p_ptr < len(p) and (p[p_ptr] == s[s_ptr] or p[p_ptr] == '?'):
+                s_ptr += 1
+                p_ptr += 1
+
+            # 2. Wildcard '*' found: record pointers for backtracking
+            elif p_ptr < len(p) and p[p_ptr] == '*':
+                star_idx = p_ptr
+                match_idx = s_ptr
+                p_ptr += 1  # Assume '*' matches 0 characters initially
+
+            # 3. Mismatch occurred, but a previous '*' exists: backtrack
+            elif star_idx != -1:
+                p_ptr = star_idx + 1
+                match_idx += 1
+                s_ptr = match_idx  # Let '*' consume one more character
+
+            # 4. Mismatch occurred and no previous '*' to backtrack to
+            else:
+                return False
+
+        # Consume remaining trailing '*' characters in pattern
+        while p_ptr < len(p) and p[p_ptr] == '*':
+            p_ptr += 1
+
+        # Check if the whole pattern was consumed
+        return p_ptr == len(p)
