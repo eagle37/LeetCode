@@ -1,12 +1,12 @@
-# Last updated: 8/29/2026, 8:27:49 PM
+# Last updated: 8/29/2026, 8:28:59 PM
 1class Solution:
-2    def permute(self, nums: List[int]) -> List[List[int]]:
+2    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
 3        res = []
 4        path = []
 5        used = [False] * len(nums)
 6
 7        def backtrack():
-8            if len(path) == len(nums):
+8            if len(path) == len(nums) and path not in res:
 9                res.append(path.copy())
 10                return
 11            
