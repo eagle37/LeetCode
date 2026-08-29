@@ -1,26 +1,30 @@
-# Last updated: 8/29/2026, 8:27:07 PM
-1class Solution:
-2    def permute(self, nums: List[int]) -> List[List[int]]:
-3        res = []
-4        path = []
-5        used = [False] * len(nums)
-6
-7        def backtrack():
-8            if len(path) == len(nums):
-9                res.append(path.copy())
-10                return
-11            
-12            for i in range(len(nums)):
-13                if used[i]:
-14                    continue
-15                
-16                used[i] = True
-17                path.append(nums[i])
-18
-19                backtrack()
-20
-21                path.pop()
-22                used[i] = False
-23        
-24        backtrack()
-25        return res
+# Last updated: 8/29/2026, 8:27:17 PM
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+
+        permutations = []
+        current_permutation = []
+        used = [False] * n
+
+        def backtrack():
+            if len(current_permutation) == n:
+                permutations.append(current_permutation.copy())
+                return
+
+            for i in range(n):
+                if used[i]:
+                    continue
+
+                # nums[i] を今回の順列に追加する
+                used[i] = True
+                current_permutation.append(nums[i])
+
+                backtrack()
+
+                # 選択前の状態に戻す
+                current_permutation.pop()
+                used[i] = False
+
+        backtrack()
+        return permutations
