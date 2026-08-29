@@ -1,31 +1,26 @@
-# Last updated: 8/29/2026, 8:31:31 PM
-
-class Solution:
-    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        visit = [False] * len(nums)
-        if len(nums) == 1:
-            return [nums[:]]
-
-        def backtrack(ans, path):
-
-            if len(path) == len(nums):
-                return ans.append(path[:])
-
-            for i in range(len(nums)):
-                if visit[i]:
-                    continue
-
-                if i > 0 and nums[i] == nums[i - 1] and not visit[i - 1]:
-                    continue
-
-                visit[i] = True
-                path.append(nums[i])
-
-                backtrack(ans, path)
-
-                path.pop()
-                visit[i] = False
-        nums.sort()
-        backtrack(ans, [])
-        return ans
+# Last updated: 8/29/2026, 8:33:08 PM
+1class Solution:
+2    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+3        res = []
+4
+5        def backtrack(start):
+6            if start == len(nums):
+7                res.append(nums.copy())
+8                return
+9
+10            seen = set()
+11
+12            for i in range(start, len(nums)):
+13                if nums[i] in seen:
+14                    continue
+15
+16                seen.add(nums[i])
+17
+18                nums[start], nums[i] = nums[i], nums[start]
+19
+20                backtrack(start + 1)
+21
+22                nums[start], nums[i] = nums[i], nums[start]
+23
+24        backtrack(0)
+25        return res
