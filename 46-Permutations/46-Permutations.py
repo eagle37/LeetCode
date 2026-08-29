@@ -1,21 +1,16 @@
-# Last updated: 8/29/2026, 8:46:14 PM
-1import typing
-2from typing import List
-3class Solution:
-4    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+# Last updated: 8/29/2026, 8:46:27 PM
+1class Solution:
+2    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+3
+4        groups = {}
 5
-6        groups = {}
-7
-8        for word in strs:
-9            key = ''.join(sorted(word))
-10
-11            if key not in groups:
-12                groups[key] = []
+6        for word in strs:
+7            key = ''.join(sorted(word))
+8
+9            if key not in groups:
+10                groups[key] = []
+11
+12            groups[key].append(word)
 13
-14            groups[key].append(word)
+14        return list(groups.values())
 15
-16        return list(groups.values())
-17      
-18c = Solution()
-19s = c.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
-20print(s)
