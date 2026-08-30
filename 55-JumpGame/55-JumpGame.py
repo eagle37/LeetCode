@@ -1,11 +1,14 @@
-# Last updated: 8/30/2026, 4:08:38 PM
+# Last updated: 8/30/2026, 4:18:43 PM
 1class Solution:
-2    def canJump(self, nums: List[int]) -> bool:
-3        i = 0
-4        res = False
-5        for j in range(len(nums)):
-6            if i < j:
-7                return res
-8            i = max(i, j+nums[j])
-9            if i >= len(nums)-1:
-10                return True
+2    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+3        intervals.sort()
+4        merge = [intervals[0]]
+5        for i in intervals[1:]:
+6            last = merge[-1]
+7            if i[0] <= last[1]:
+8                end = max(i[1], last[1])
+9                merge.pop()
+10                merge.append([last[0], end])
+11            else:
+12                merge.append(i)
+13        return merge
