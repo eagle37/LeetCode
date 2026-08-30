@@ -1,4 +1,4 @@
-# Last updated: 8/30/2026, 3:56:18 PM
+# Last updated: 8/30/2026, 3:56:25 PM
 1class Solution:
 2    def minimumDeletions(self, nums: List[int]) -> int:
 3
