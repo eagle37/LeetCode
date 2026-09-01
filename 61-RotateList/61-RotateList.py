@@ -1,4 +1,4 @@
-# Last updated: 9/1/2026, 11:34:22 PM
+# Last updated: 9/1/2026, 11:35:56 PM
 1class Solution:
 2    def addBinary(self, a: str, b: str) -> str:
 3        if a == '0' and b == '0':
