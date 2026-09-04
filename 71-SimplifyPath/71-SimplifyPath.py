@@ -1,33 +1,14 @@
-# Last updated: 9/4/2026, 4:11:42 PM
+# Last updated: 9/4/2026, 4:25:42 PM
 1class Solution:
-2    def search(self, nums: List[int], target: int) -> bool:
-3
-4        left = 0
-5        right = len(nums) - 1
-6
-7        while left <= right:
-8
-9            mid = (left + right) // 2
-10
-11            if nums[mid] == target:
-12                return True
-13
-14            if nums[left] == nums[mid] == nums[right]:
-15                left += 1
-16                right -= 1
-17
-18            elif nums[left] <= nums[mid]:
-19
-20                if nums[left] <= target < nums[mid]:
-21                    right = mid - 1
-22                else:
-23                    left = mid + 1
-24
-25            else:
-26
-27                if nums[mid] < target <= nums[right]:
-28                    left = mid + 1
-29                else:
-30                    right = mid - 1
-31
-32        return False
+2    def simplifyPath(self, path: str) -> str:
+3        a = []
+4        for i in path.split("/"):
+5            if i == '.' or i == '..':
+6                if len(a) > 0 and i == '..':
+7                    a.pop()
+8                else:
+9                    pass
+10            elif i:
+11                a.append(i)
+12        s = "/" + "/".join([x for x in a[0:len(a)]])
+13        return s[:len(s)]
