@@ -1,14 +1,11 @@
-# Last updated: 9/4/2026, 3:44:29 PM
+# Last updated: 9/4/2026, 4:04:15 PM
 1class Solution:
-2    def simplifyPath(self, path: str) -> str:
-3        a = []
-4        for i in path.split("/"):
-5            if i == '.' or i == '..':
-6                if len(a) > 0 and i == '..':
-7                    a.pop()
-8                else:
-9                    pass
-10            elif i:
-11                a.append(i)
-12        s = "/" + "/".join([x for x in a[0:len(a)]])
-13        return s[:len(s)]
+2    def removeDuplicates(self, nums: List[int]) -> int:
+3        k = 2
+4
+5        for i in range(2, len(nums)):
+6            if nums[i] != nums[k - 2]:
+7                nums[k] = nums[i]
+8                k += 1
+9
+10        return k
