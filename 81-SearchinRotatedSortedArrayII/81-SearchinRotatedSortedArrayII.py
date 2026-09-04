@@ -1,33 +1,30 @@
-# Last updated: 9/4/2026, 4:17:38 PM
-1class Solution:
-2    def search(self, nums: List[int], target: int) -> bool:
-3
-4        left = 0
-5        right = len(nums) - 1
-6
-7        while left <= right:
+# Last updated: 9/4/2026, 4:24:14 PM
+1# Definition for singly-linked list.
+2# class ListNode:
+3#     def __init__(self, val=0, next=None):
+4#         self.val = val
+5#         self.next = next
+6class Solution:
+7    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
 8
-9            mid = (left + right) // 2
-10
-11            if nums[mid] == target:
-12                return True
-13
-14            if nums[left] == nums[mid] == nums[right]:
-15                left += 1
-16                right -= 1
-17
-18            elif nums[left] <= nums[mid]:
+9        dummy = ListNode(0)
+10        dummy.next = head
+11
+12        prev = dummy
+13        curr = head
+14
+15        while curr and curr.next:
+16
+17            if curr.val == curr.next.val:
+18                duplicate = curr.val
 19
-20                if nums[left] <= target < nums[mid]:
-21                    right = mid - 1
-22                else:
-23                    left = mid + 1
+20                while curr and curr.val == duplicate:
+21                    curr = curr.next
+22
+23                prev.next = curr
 24
 25            else:
-26
-27                if nums[mid] < target <= nums[right]:
-28                    left = mid + 1
-29                else:
-30                    right = mid - 1
-31
-32        return False
+26                prev = curr
+27                curr = curr.next
+28
+29        return dummy.next
