@@ -1,20 +1,19 @@
-# Last updated: 9/5/2026, 5:00:51 PM
+# Last updated: 9/5/2026, 5:01:05 PM
 1class Solution:
-2    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-3        """
-4        Do not return anything, modify nums1 in-place instead.
-5        """
-6        i = m-1
-7        j = n-1 
-8        k = m+n-1
-9
-10        while j>=0:
-11            if i<0 or nums1[i] < nums2[j]:
-12                nums1[k] = nums2[j]
-13                j-=1
-14                k-=1
-15            else:
-16                nums1[k] = nums1[i]
-17                i-=1
-18                k-=1
-19
+2    def generate(self, numRows: int) -> List[List[int]]:
+3
+4        ans = [[1]]
+5
+6        for i in range(1, numRows):
+7
+8            prev = ans[-1]
+9            row = [1]
+10
+11            for j in range(1, i):
+12                row.append(prev[j-1] + prev[j])
+13
+14            row.append(1)
+15
+16            ans.append(row)
+17
+18        return ans
