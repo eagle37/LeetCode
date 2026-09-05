@@ -1,4 +1,4 @@
-# Last updated: 9/5/2026, 4:58:16 PM
+# Last updated: 9/5/2026, 4:58:31 PM
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
         triangle = []
