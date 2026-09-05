@@ -1,8 +1,12 @@
-# Last updated: 9/5/2026, 5:25:44 PM
+# Last updated: 9/5/2026, 5:25:57 PM
 1class Solution:
-2    def isPalindrome(self, s: str) -> bool:
-3        x = ''
-4        for i in range(len(s)-1, -1, -1):
-5            if s[i].isalnum():
-6                x += s[i].lower()
-7        return x == x[::-1]
+2    def maxProfit(self, prices: List[int]) -> int:
+3        minp = float("inf")
+4        maxp = 0
+5        for p in prices:
+6            if p < minp:
+7                minp = p
+8            p = p - minp
+9            if p > maxp:
+10                maxp = p
+11        return maxp
