@@ -1,13 +1,18 @@
-# Last updated: 9/5/2026, 4:58:31 PM
-class Solution:
-    def getRow(self, rowIndex: int) -> List[int]:
-        triangle = []
-        for i in range(rowIndex+1):
-            a = [1]*(i+1)
-            for j in range(1,i):
-                a[j] = triangle[i-1][j-1] + triangle[i-1][j]
-
-
-            triangle.append(a)
-
-        return triangle[rowIndex]
+# Last updated: 9/5/2026, 4:59:45 PM
+1class Solution:
+2    def getRow(self, rowIndex: int) -> List[int]:
+3        ans = [1]
+4
+5        for i in range(1, rowIndex+1):
+6
+7            prev = ans
+8            row = [1]
+9
+10            for j in range(1, i):
+11                row.append(prev[j-1] + prev[j])
+12
+13            row.append(1)
+14
+15            ans = row
+16
+17        return ans
