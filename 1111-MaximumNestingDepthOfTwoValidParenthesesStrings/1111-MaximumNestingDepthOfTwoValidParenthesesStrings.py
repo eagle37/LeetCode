@@ -1,0 +1,9 @@
+# Last updated: 10/4/2026, 10:04:32 PM
+class Solution:
+    def maxDepthAfterSplit(self, seq: str) -> list[int]:
+        res = []
+
+        for i in range(len(seq)):
+            res.append((i ^ ord(seq[i])) & 1)
+
+        return res
