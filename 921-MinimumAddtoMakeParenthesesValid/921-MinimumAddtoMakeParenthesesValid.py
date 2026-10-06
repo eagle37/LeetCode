@@ -1,4 +1,4 @@
-# Last updated: 10/7/2026, 12:12:50 AM
+# Last updated: 10/7/2026, 12:12:57 AM
 1class Solution:
 2    def minAddToMakeValid(self, s: str) -> int:
 3        open_brackets = 0
