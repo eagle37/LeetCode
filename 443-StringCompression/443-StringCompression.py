@@ -1,4 +1,4 @@
-# Last updated: 10/12/2026, 12:04:25 AM
+# Last updated: 10/12/2026, 12:05:09 AM
 1class Solution:
 2  def compress(self, chars: List[str]) -> int:
 3    ans = 0
